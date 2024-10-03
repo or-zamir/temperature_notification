@@ -3,10 +3,9 @@ import asyncio
 from desktop_notifier import DesktopNotifier
 import time
 from ctypes import Structure, windll, c_uint, sizeof, byref
-import time
 
 already_notified = False
-MAX_TEMP = 28
+MAX_TEMP = 25
 
 class LASTINPUTINFO(Structure):
   _fields_ = [
