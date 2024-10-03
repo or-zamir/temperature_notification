@@ -3,9 +3,11 @@ import asyncio
 from desktop_notifier import DesktopNotifier
 import time
 from ctypes import Structure, windll, c_uint, sizeof, byref
+import time
 
 already_notified = False
-MAX_TEMP = 25
+MAX_TEMP = 28
+CITY_NAME = 'New York'
 
 class LASTINPUTINFO(Structure):
   _fields_ = [
@@ -31,7 +33,7 @@ async def main():
     else:
       # Check Weather pythonWeatherAPI -> Notify if above MAX_TEMP ONCE! -> And notify when it's cold again ONCE!
       async with python_weather.Client(unit=python_weather.METRIC) as client:
-        weather = await client.get('Ramat Gan')
+        weather = await client.get(CITY_NAME)
         if weather.temperature >= MAX_TEMP:
           if already_notified:
             print(f"Already Notified! Temperature is still warm!\nCurrent Temperature: {weather.temperature}℃")
